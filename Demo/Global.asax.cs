@@ -30,7 +30,7 @@ namespace Demo
 
             //TODO: Register types for DI here
             builder.RegisterType<ImageService>().As<IImageService>();
-            builder.RegisterType<ImageFromFile>().As<IImageAcquisition>();
+            builder.RegisterType<CameraCapture>().As<IImageAcquisition>();
 
             // Set the dependency resolver to be Autofac.
             var container = builder.Build();
