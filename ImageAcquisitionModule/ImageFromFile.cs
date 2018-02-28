@@ -18,11 +18,14 @@ namespace ImageAcquisitionModule
                 ImageName = Guid.NewGuid().ToString(),
                 Image = GetImageFromFile(),
                 ImageDate = DateTime.Today,
-                ImageDescription = "Very pretty image"
+                ImageQuality = -1
             };
 
             return imageResponse;
         }
+
+        public ImageResponse GetImage(ImageRequest imageRequest)
+            => GetImage();
 
         private string GetImageFromFile()
         {

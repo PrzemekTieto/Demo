@@ -9,5 +9,10 @@ namespace ImageAcquisitionModule
         {
             throw new System.NotImplementedException();
         }
+
+        public ImageResponse GetImage(ImageRequest imageRequest)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

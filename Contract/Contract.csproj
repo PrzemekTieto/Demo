@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IImage.cs" />
+    <Compile Include="Models\ImageRequest.cs" />
     <Compile Include="Models\ImageResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

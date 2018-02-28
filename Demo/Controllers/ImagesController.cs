@@ -24,5 +24,18 @@ namespace Demo.Controllers
 
             return imageResponse;
         }
+
+        [HttpPost]
+        public ImageResponse GetImage([FromBody] ImageRequest imageRequest)
+        {
+            if (!ModelState.IsValid || imageRequest == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            var imageResponse = _imageService.GetImage(imageRequest);
+
+            return imageResponse;
+        }
     }
 }

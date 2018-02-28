@@ -12,43 +12,52 @@ namespace ImageAcquisitionModule
 {
     public class CameraCapture : IImageAcquisition
     {
+        private const long DefaultImageQuality = 50L;
         public ImageResponse GetImage()
+        {
+            var imageRequest = new ImageRequest
+            {
+                ImageQuality = DefaultImageQuality
+            };
+
+            return GetImage(imageRequest);
+        }
+
+        public ImageResponse GetImage(ImageRequest imageRequest)
         {
             var imageResponse = new ImageResponse
             {
                 ImageType = ImageFormat.Jpeg.ToString(),
                 ImageName = Guid.NewGuid().ToString(),
-                Image = CaptureImage(),
+                Image = CaptureImage(imageRequest.ImageQuality),
                 ImageDate = DateTime.Today,
-                ImageDescription = "Very pretty image"
+                ImageQuality = imageRequest.ImageQuality
             };
 
             return imageResponse;
         }
 
-        private string CaptureImage()
+        private string CaptureImage(long imageQuality)
         {
             VideoCapture capture = new VideoCapture(); //create a camera capture
 
             Bitmap image = capture.QueryFrame().Bitmap; //take a picture
 
-            var imageString = ImageToBase64EncodeString(image);
+            var imageString = ImageToBase64EncodeString(image, imageQuality);
 
             return imageString;
         }
 
-        private string ImageToBase64EncodeString(Image image)
+        private string ImageToBase64EncodeString(Image image, long imageQuality)
 
         {
             MemoryStream ms = new MemoryStream();
 
             var jpgEncoder = GetEncoder(ImageFormat.Jpeg);
             var myEncoder = Encoder.Quality;
-            var myEncoderParameter = new EncoderParameter(myEncoder, 50L);
+            var myEncoderParameter = new EncoderParameter(myEncoder, imageQuality);
             var myEncoderParameters = new EncoderParameters(1);
             myEncoderParameters.Param[0] = myEncoderParameter;
-
-            var format = image.RawFormat;
 
             image.Save(ms, jpgEncoder, myEncoderParameters);
 

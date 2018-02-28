@@ -18,5 +18,12 @@ namespace Services
 
             return imageResponse;
         }
+
+        public ImageResponse GetImage(ImageRequest imageRequest)
+        {
+            var imageResponse = _imageAcquisition.GetImage(imageRequest);
+
+            return imageResponse;
+        }
     }
 }
