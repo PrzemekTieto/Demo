@@ -12,9 +12,15 @@ namespace ImageAcquisitionModule
 {
     public class CameraCapture : IImageAcquisition
     {
+        private readonly VideoCapture _capture;
         private const long DefaultImageQuality = 50L;
         private const int DefaultFrameWidth = 640;
         private const int DefaultFrameHeight = 480;
+
+        public CameraCapture(VideoCapture capture)
+        {
+            _capture = capture;
+        }
 
         public ImageResponse GetImage()
         {
@@ -44,12 +50,10 @@ namespace ImageAcquisitionModule
 
         private string CaptureImage(ImageRequest imageRequest)
         {
-            VideoCapture capture = new VideoCapture(); //create a camera capture
+            _capture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.FrameWidth, imageRequest.FrameWidth);
+            _capture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.FrameHeight, imageRequest.FrameHeight);
 
-            capture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.FrameWidth, imageRequest.FrameWidth);
-            capture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.FrameHeight, imageRequest.FrameHeight);
-
-            Bitmap image = capture.QueryFrame().Bitmap; //take a picture
+            Bitmap image = _capture.QueryFrame().Bitmap; //take a picture
 
             var imageString = ImageToBase64EncodeString(image, imageRequest.ImageQuality);
 
