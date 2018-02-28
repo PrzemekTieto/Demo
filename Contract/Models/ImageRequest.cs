@@ -10,5 +10,7 @@ namespace Contract.Models
     public class ImageRequest
     {
         public long ImageQuality { get; set; }
+        public int FrameWidth { get; set; }
+        public int FrameHeight { get; set; }
     }
 }
