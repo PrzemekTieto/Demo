@@ -54,7 +54,7 @@
   <ItemGroup>
     <Compile Include="CameraCapture.cs" />
     <Compile Include="Contract\IImageAcquisition.cs" />
-    <Compile Include="ImageAcquisition.cs" />
+    <Compile Include="ImageAcquisitionExample.cs" />
     <Compile Include="ImageFromFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

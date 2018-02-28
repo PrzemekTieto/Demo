@@ -3,7 +3,7 @@ using ImageAcquisitionModule.Contract;
 
 namespace ImageAcquisitionModule
 {
-    public class ImageAcquisition : IImageAcquisition
+    public class ImageAcquisitionExample : IImageAcquisition
     {
         public ImageResponse GetImage()
         {

@@ -12,10 +12,11 @@ namespace ImageAcquisitionModule
 {
     public class CameraCapture : IImageAcquisition
     {
-        private readonly VideoCapture _capture;
         private const long DefaultImageQuality = 50L;
         private const int DefaultFrameWidth = 640;
         private const int DefaultFrameHeight = 480;
+
+        private readonly VideoCapture _capture;
 
         public CameraCapture(VideoCapture capture)
         {

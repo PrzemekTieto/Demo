@@ -29,7 +29,7 @@ namespace ImageAcquisitionModule
 
         private string GetImageFromFile()
         {
-            var image = Image.FromFile("c:\\Images\\1.jpg");
+            var image = Image.FromFile(@"c:\images\1.jpg");
 
             var imageString = ImageToBase64EncodeString(image);
 

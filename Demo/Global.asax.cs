@@ -26,7 +26,7 @@ namespace Demo
 
             //TODO: Register types for DI here
             builder.RegisterType<ImageService>().As<IImageService>();
-            builder.RegisterType<CameraCapture>().As<IImageAcquisition>();
+            builder.RegisterType<ImageFromFile>().As<IImageAcquisition>();
             builder.RegisterType<VideoCapture>();
 
             // Set the dependency resolver to be Autofac.
