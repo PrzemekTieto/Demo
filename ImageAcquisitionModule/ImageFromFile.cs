@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Net.Mime;
 using Contract.Models;
 using ImageAcquisitionModule.Contract;
 using System.Drawing;
@@ -10,43 +8,28 @@ namespace ImageAcquisitionModule
 {
     public class ImageFromFile : IImageAcquisition
     {
-        public ImageResponse GetImage()
+        public AcquiredImage AcquireImage(ImageRequest imageRequest)
+            => AcquireImageFromFile(imageRequest.ImageQuality);
+
+        private AcquiredImage AcquireImageFromFile(long imageQuality)
         {
-            var imageResponse = new ImageResponse
+            var acquiredImage = new AcquiredImage
             {
                 ImageType = ImageFormat.Jpeg.ToString(),
                 ImageName = Guid.NewGuid().ToString(),
                 Image = GetImageFromFile(),
                 ImageDate = DateTime.Today,
-                ImageQuality = -1
+                ImageQuality = imageQuality
             };
 
-            return imageResponse;
+            return acquiredImage;
         }
 
-        public ImageResponse GetImage(ImageRequest imageRequest)
-            => GetImage();
-
-        private string GetImageFromFile()
+        private Image GetImageFromFile()
         {
             var image = Image.FromFile(@"c:\images\1.jpg");
 
-            var imageString = ImageToBase64EncodeString(image);
-
-            return imageString;
-        }
-
-        private string ImageToBase64EncodeString(Image image)
-
-        {
-            MemoryStream ms = new MemoryStream();
-
-            image.Save(ms, image.RawFormat);
-
-            byte[] array = ms.ToArray();
-
-            return Convert.ToBase64String(array);
-
+            return image;
         }
     }
 }

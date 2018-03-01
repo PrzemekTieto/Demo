@@ -5,12 +5,7 @@ namespace ImageAcquisitionModule
 {
     public class ImageAcquisitionExample : IImageAcquisition
     {
-        public ImageResponse GetImage()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public ImageResponse GetImage(ImageRequest imageRequest)
+        public AcquiredImage AcquireImage(ImageRequest imageRequest)
         {
             throw new System.NotImplementedException();
         }
